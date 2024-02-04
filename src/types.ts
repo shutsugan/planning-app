@@ -1,13 +1,13 @@
 export type Driver = {
   id: number;
   name: string;
-  locaion: string;
+  location: string;
 };
 
 export type Tour = {
   id: number;
   customerName: string;
-  shipmentDate: Date;
+  shipmentDate: string;
   fromLocation: string;
   toLocation: string;
   assignedDriver: number;
