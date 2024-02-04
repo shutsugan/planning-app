@@ -1,78 +1,44 @@
 <script setup lang="ts">
+import { computed } from "vue";
+import { useDriverStore } from "../stores/driver";
 import type { Driver } from "../types";
 
 type ListProps = {
   item: Driver;
 };
 
+const store = useDriverStore();
+
 const { item } = defineProps<ListProps>();
+
+const currentDriver = computed(() => store.driverToUpdateId === item.id);
+
+const removeDriver = (driverId: number) => store.removeDriver(driverId);
+
+const updateDriver = (driverId: number) => {
+  !currentDriver.value
+    ? store.setDriverToUpdate(driverId)
+    : store.cancelDriveToUpdate();
+};
 </script>
 
 <template>
-  <div class="driver-item">
-    <div class="driver-item-wrapper">
+  <div class="item">
+    <div class="item-wrapper">
       <div class="item-avatar">{{ item.name.slice(0, 2) }}</div>
-      <div class="item-name">
-        <span class="item-bold">Name:</span> {{ item.name }}
-      </div>
-      <div class="divider" />
-      <div class="item-location">
-        <span class="item-bold">Location:</span> {{ item.location }}
+      <div class="item-info col">
+        <span class="item-bold">{{ item.name }}</span>
+        <span class="item-text">{{ item.location }}</span>
       </div>
     </div>
 
-    <div class="driver-item-buttons">
-      <button class="btn secondary-btn gap-r">Update</button>
-      <button class="btn primary-btn">Remove</button>
+    <div class="item-buttons">
+      <button class="btn secondary-btn gap-r" @click="updateDriver(item.id)">
+        {{ !currentDriver ? "Update" : "Cancel" }}
+      </button>
+      <button class="btn primary-btn" @click="removeDriver(item.id)">
+        Remove
+      </button>
     </div>
   </div>
 </template>
-
-<style scoped>
-.driver-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px;
-  border-bottom: solid 1px var(--border-color);
-}
-
-.driver-item-wrapper,
-.driver-item-buttons {
-  display: flex;
-  align-items: center;
-}
-
-.item-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 30px;
-  height: 30px;
-  border-radius: 30px;
-  background: var(--border-color);
-  margin-right: 16px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.driver-item:last-child {
-  border-bottom: none;
-}
-
-.item-bold {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-@media (max-width: 760px) {
-  .driver-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-}
-</style>
