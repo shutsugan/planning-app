@@ -4,8 +4,8 @@
   <nav class="navbar">
     <h3>Planning App</h3>
     <div class="navbar-buttons">
-      <router-link class="btn" to="/">Driver</router-link>
-      <router-link class="btn" to="/tour">Tour</router-link>
+      <router-link class="btn gap-r" to="/">Drivers</router-link>
+      <router-link class="btn" to="/tour">Tours</router-link>
     </div>
   </nav>
 </template>
