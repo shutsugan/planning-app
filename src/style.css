@@ -3,6 +3,7 @@
   --color-primary: #18181c;
   --color-light: #fff;
   --border-radius: 6px;
+  --text-color: #aaa;
 }
 
 html,
@@ -52,11 +53,14 @@ body {
 .border-section {
   border: solid 1px var(--border-color);
   border-radius: var(--border-radius);
-  padding: 16px;
 }
 
 .gap-r {
   margin-right: 8px;
+}
+
+.pad {
+  padding: 16px;
 }
 
 .divider {
@@ -65,7 +69,8 @@ body {
   border-right: solid 1px var(--border-color);
 }
 
-input {
+input,
+select {
   border: solid 1px var(--border-color);
   border-radius: var(--border-radius);
   height: 36px;
@@ -74,7 +79,8 @@ input {
   outline: none;
 }
 
-input:hover {
+input:hover,
+select:hover {
   border-color: var(--color-primary);
 }
 
