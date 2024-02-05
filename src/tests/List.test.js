@@ -28,8 +28,6 @@ describe("List.vue", () => {
 
     expect(wrapper.find(".list").exists()).toBe(false);
     expect(wrapper.find(".list-empty").exists()).toBe(true);
-    expect(wrapper.find(".list-empty").text()).toBe(
-      "Use the form to create a new user"
-    );
+    expect(wrapper.find(".list-empty").text()).toBe("No result...");
   });
 });
