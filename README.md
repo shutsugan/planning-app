@@ -4,7 +4,7 @@
 
    ```bash
    git clone https://github.com/shutsugan/planning-app.git
-   cd tour-planning-web-app
+   cd planning-app
 
    ```
 
@@ -16,7 +16,7 @@
 
    ```
 
-3. **Run the app localy:**
+3. **Run the app locally:**
 
    ```bash
    pnpm dev
@@ -29,6 +29,7 @@
    ```
 
 5. **Run the app e2e tests:**
+   run the app in dev mode
 
    ```bash
    pnpm exec playwright test
