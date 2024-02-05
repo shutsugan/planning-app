@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { expect, test } from "vitest";
+import { expect, test, describe, beforeEach, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 
 import DirverItem from "../components/DriverItem.vue";
@@ -34,10 +34,12 @@ describe("DirverItem.vue", () => {
       },
     });
 
-    wrapper.vm.updateDriver = vi.fn();
+    const vm = wrapper.vm as typeof wrapper.vm & { updateDriver: () => void };
+
+    vm.updateDriver = vi.fn();
     await wrapper.find(".secondary-btn").trigger("click");
 
-    expect(wrapper.vm.updateDriver).toHaveBeenCalledWith(mockDriver.id);
+    expect(vm.updateDriver).toHaveBeenCalledWith(mockDriver.id);
   });
 
   test("calls removeDriver method when remove button is clicked", async () => {
@@ -47,9 +49,11 @@ describe("DirverItem.vue", () => {
       },
     });
 
-    wrapper.vm.removeDriver = vi.fn();
+    const vm = wrapper.vm as typeof wrapper.vm & { removeDriver: () => void };
+
+    vm.removeDriver = vi.fn();
     await wrapper.find(".primary-btn").trigger("click");
 
-    expect(wrapper.vm.removeDriver).toHaveBeenCalledWith(mockDriver.id);
+    expect(vm.removeDriver).toHaveBeenCalledWith(mockDriver.id);
   });
 });

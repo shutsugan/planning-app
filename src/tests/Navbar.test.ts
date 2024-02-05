@@ -1,9 +1,7 @@
 import { mount } from "@vue/test-utils";
-import { expect, test } from "vitest";
+import { expect, test, describe } from "vitest";
 
 import Navbar from "../components/Navbar.vue";
-
-const wrapper = mount(Navbar);
 
 describe("Navbar.vue", () => {
   test("renders navigation links correctly", async () => {

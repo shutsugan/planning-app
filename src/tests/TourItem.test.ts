@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { expect, test } from "vitest";
+import { expect, test, describe, beforeEach, vi } from "vitest";
 import { setActivePinia, createPinia } from "pinia";
 
 import TourItem from "../components/TourItem.vue";
@@ -16,22 +16,6 @@ describe("TourItem.vue", () => {
     fromLocation: "City A",
     toLocation: "City B",
     assignedDriver: 1,
-  };
-
-  const mockDriver = {
-    id: 1,
-    name: "Driver 1",
-  };
-
-  const mockStore = {
-    tourToUpdateId: null,
-    setTourToUpdate: vi.fn(),
-    cancelTourToUpdate: vi.fn(),
-    removeTour: vi.fn(),
-  };
-
-  const mockDriverStore = {
-    getDriverById: vi.fn().mockReturnValue(mockDriver),
   };
 
   test("renders tour details correctly", () => {
@@ -53,10 +37,12 @@ describe("TourItem.vue", () => {
       },
     });
 
-    wrapper.vm.updateTour = vi.fn();
+    const vm = wrapper.vm as typeof wrapper.vm & { updateTour: () => void };
+    vm.updateTour = vi.fn();
+
     await wrapper.find(".secondary-btn").trigger("click");
 
-    expect(wrapper.vm.updateTour).toHaveBeenCalledWith(mockTour.id);
+    expect(vm.updateTour).toHaveBeenCalledWith(mockTour.id);
   });
 
   test("calls TourItem method when remove button is clicked", async () => {
@@ -66,9 +52,11 @@ describe("TourItem.vue", () => {
       },
     });
 
-    wrapper.vm.removeTour = vi.fn();
+    const vm = wrapper.vm as typeof wrapper.vm & { removeTour: () => void };
+    vm.removeTour = vi.fn();
+
     await wrapper.find(".primary-btn").trigger("click");
 
-    expect(wrapper.vm.removeTour).toHaveBeenCalledWith(mockTour.id);
+    expect(vm.removeTour).toHaveBeenCalledWith(mockTour.id);
   });
 });

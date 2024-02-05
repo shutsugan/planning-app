@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { expect, test } from "vitest";
+import { expect, test, describe } from "vitest";
 
 import List from "../components/List.vue";
 
