@@ -17,6 +17,25 @@
    ```
 
 3. **Run the app localy:**
+
    ```bash
    pnpm dev
+   ```
+
+4. **Run the app unit tests:**
+
+   ```bash
+   pnpm test
+   ```
+
+5. **Run the app e2e tests:**
+
+   ```bash
+   pnpm exec playwright test
+   ```
+
+   for UI tests
+
+   ```bash
+   pnpm exec playwright test --ui
    ```

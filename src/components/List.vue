@@ -14,7 +14,7 @@ const listLength = computed(() => props.list.length);
   <ul v-if="listLength" class="list">
     <li v-for="item in list" :key="item.id"><slot :item="item" /></li>
   </ul>
-  <div v-else class="list-empty">Use the form to create a new user</div>
+  <div v-else class="list-empty">No result...</div>
 </template>
 
 <style>
